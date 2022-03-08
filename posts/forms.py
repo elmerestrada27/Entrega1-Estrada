@@ -9,6 +9,5 @@ class PostForm(forms.ModelForm):
            'title': 'Titulo',
            'content': 'Contenido',
         }
-      #   labels = {'title' : 'Titulo', 'content' : 'Contenido',} # No ANDAA
 
 

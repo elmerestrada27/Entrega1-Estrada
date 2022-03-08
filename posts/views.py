@@ -32,5 +32,5 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     fields = '__all__'
-    template_name = 'Posts/post_delete.html'    
+    template_name = 'Posts/post_delete.html'        # DeleteView necesita una ventana de confirmacion para realizar la eliminacion
     success_url = reverse_lazy('post:list')

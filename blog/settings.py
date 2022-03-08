@@ -3,6 +3,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
 SECRET_KEY = 'django-insecure-s73)$34(8f%n$%dlzy1(rf_*9x&1op+tw*b41w0mim2x2y1gt#'
 
 DEBUG = True
@@ -20,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local apps
     'posts',
+    'homepage',
 ]
 
 MIDDLEWARE = [
