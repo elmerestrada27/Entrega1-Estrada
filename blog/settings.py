@@ -1,13 +1,13 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-SECRET_KEY = 'django-insecure-s73)$34(8f%n$%dlzy1(rf_*9x&1op+tw*b41w0mim2x2y1gt#'
-
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -93,6 +93,8 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
