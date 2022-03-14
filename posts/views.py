@@ -1,4 +1,5 @@
 from cProfile import label
+from multiprocessing import context
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -23,11 +24,24 @@ class PostCreateView(CreateView):
     success_url = reverse_lazy('post:list')         # Para redirigir al usuario luego de crear un post --> Hace referencia al name que se asigna en posts/urls.py --> NO al nombre del template
     #fields = ('title', 'content')                  # No permite configurar form_class y fields (solo uno)
 
+    def get_context_data(self, **kwargs):
+        context = super ().get_context_data(**kwargs)
+        context.update({                            # Se añade un nuevo dato de contexto para actualizar vista Form
+            'tipo_vista': 'create'
+        })
+        return context
+
 class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
-    success_url = reverse_lazy('post:list')
-    
+    success_url = reverse_lazy('post:list')  
+
+    def get_context_data(self, **kwargs):           # Se añade un nuevo dato de contexto para actualizar vista Form
+        context = super ().get_context_data(**kwargs)
+        context.update({
+            'tipo_vista': 'update'
+        })
+        return context
 
 class PostDeleteView(DeleteView):
     model = Post

@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Post</title>
-</head>
-<body>
+{% extends 'Posts/post_list.html' %}
+{% block body_block%}
+<div class="container">
     <h1>{{post.title}}</h1>
     <h3>{{post.content}}</h3>
-    <a href={% url 'post:update' post.id %}>Modificar Post</a> |
-    <a href={% url 'post:delete' post.id %}>Eliminar Post</a>
-    <a href={% url 'post:list' %}>Volver</a>
-    
-</body>
-</html>
+    <h3>{{post.publish_date}}</h3>
+    <a class="btn btn-primary" href={% url 'post:update' post.id %}>Modificar Post</a>
+    <a class="btn btn-primary" href={% url 'post:delete' post.id %}>Eliminar Post</a>
+    <a class="btn btn-primary" href={% url 'post:list' %}>Volver</a>
+</div>
+{%endblock body_block%}

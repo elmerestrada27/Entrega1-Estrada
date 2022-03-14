@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar post</title>
-</head>
-<body>
-    <h3>¿Esta seguro que quiere eliminar el post: {{post.title}}?</h3>
+{% extends 'Posts/post_list.html' %}
+{% block body_block%}
+<div class="container">
+    <h3>¿Esta seguro que quiere eliminar el post: "{{post.title}}"?</h3>
     <form action="" method="post">
         {% csrf_token %}
         {{form}}
-        <button type="submit"> Eliminar</button>       
+        <button type="submit" class="btn btn-primary">Eliminar</button>       
         <br>
         <br>
-        {% comment %} <input type="button" value="Volver" onClick="history.go(-1);"> {% endcomment %}
+        <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
     </form>
-</body>
-</html>
+</div>
+{%endblock body_block%}
