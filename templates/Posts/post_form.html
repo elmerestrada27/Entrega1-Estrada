@@ -1,4 +1,8 @@
 {% extends 'Posts/post_list.html' %}
+
+{% block title %}
+<title>Post {{tipo_vista}}</title>
+{% endblock title %}
 {% block body_block%}
 <div class="container">
     {% if tipo_vista == "create" %}
