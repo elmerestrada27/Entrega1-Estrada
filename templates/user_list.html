@@ -1,0 +1,22 @@
+{% extends 'Posts/post_list.html' %}
+
+{% block title %}
+User {{tipo_vista}}
+{% endblock title %}
+{% block body_block%}
+<div class="container">
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+    {% for usuario in users %}
+        <li>{{usuario}}</li>
+    {% endfor %}
+
+</div>
+{%endblock body_block%}

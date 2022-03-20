@@ -1,18 +1,31 @@
 {% extends 'index.html' %}
 
+
 {% block title %}
-<title>Posts</title>
+Posts
 {% endblock title %}
+
 {%block navbar_block%}
     <nav class="navbar navbar-expand-lg navbar-dark navbar-shrink" id="mainNav">   
 {%endblock navbar_block%}
+
 {% block body_block%}
 <div class="container">
     <h1>Listado de posts</h1>
+
+    <div class="col-md-3">
+        <div class="form-group" >
+            <form class="d-flex justify-content-end">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={{filter}}> 
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
     <table class="table table-striped table-bordered ">
         <thead class="thead-dark">
             <th scope="col">#</th>
-            <th scope="col">Usuario</th>
+            {% comment %} <th scope="col">Usuario</th> {% endcomment %}
             <th scope="col">Titulo</th>
             <th scope="col">Fecha de Creacion</th>
             <th scope="col">Ultima actualizacion</th>
@@ -23,7 +36,7 @@
                 {% for post in post_list  %}
             <tr>
                 <td>{{post.id}}</td>
-                <td></td>
+                {% comment %} <td></td> {% endcomment %}
                 <td>{{post.title}}</td>
                 <td>{{post.publish_date}}</td>
                 <td>{{post.last_update}}</td>
@@ -37,7 +50,6 @@
             {% else %}
             </h2>No hay registro de Posts</h2>
             {% endif %}
-            {% comment %} <a href={% url 'post:create' %}> >> Crear Post << </a> {% endcomment %}
         </tbody>
     </table>
 </div>

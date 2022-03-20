@@ -1,26 +1,38 @@
-from cProfile import label
-from multiprocessing import context
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Post
-from .forms import PostForm
 from django.shortcuts import render
-
-
+from .models import Post, Usuario
+# from .forms import  BusquedaForm
+from .forms import  PostForm, UsuarioBusquedaForm, UsuarioForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 class PostListView(ListView):
     model = Post
     template_name = 'Posts/post_list.html'
 
+    # def get_queryset(self):
+    #     gq = Post.objects.all()
+    #     post_a_buscar = self.request.GET.get('filter')  #Revisar porq me devuelve None!
+    #     print(post_a_buscar)
+    #     if post_a_buscar:
+    #         gq = gq.filter(title__icontains=post_a_buscar)
+    #     return gq
+
+    # def get(self, request):
+    #     title = request.GET.get('title', None)
+    #     if title is not None:
+    #         posts = Post.objects.filter(title__icontains=title)
+    #     else:
+    #         posts = Post.objects.all()
+    #     return posts
+            
+
 class PostDetailView(DetailView):
     model = Post
     template_name = 'Posts/post_detail.html'
+
 class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'Posts/post_form.html'
-    #succes_url = "/Posts/post/post_list"
     success_url = reverse_lazy('post:list')         # Para redirigir al usuario luego de crear un post --> Hace referencia al name que se asigna en posts/urls.py --> NO al nombre del template
     #fields = ('title', 'content')                  # No permite configurar form_class y fields (solo uno)
 
@@ -33,7 +45,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UpdateView):
     model = Post
-    form_class = PostForm
+    form_class = PostForm                           
     success_url = reverse_lazy('post:list')  
 
     def get_context_data(self, **kwargs):           # Se añade un nuevo dato de contexto para actualizar vista Form
@@ -48,3 +60,20 @@ class PostDeleteView(DeleteView):
     fields = '__all__'
     template_name = 'Posts/post_delete.html'        # DeleteView necesita una ventana de confirmacion para realizar la eliminacion
     success_url = reverse_lazy('post:list')
+
+# ------------------------------------------------------
+class UserCreateView(CreateView):
+    model = Post
+    form_class = UsuarioForm
+    template_name = 'user_create.html'
+    success_url = reverse_lazy('index')         
+
+
+def lista_usuarios(request):    
+    nombre_usuario = request.GET.get('nombre', None)
+    if nombre_usuario is not None:
+        users = Usuario.objects.filter(nombre__icontains=nombre_usuario)
+    else:
+        users = Usuario.objects.all()
+    form = UsuarioBusquedaForm()
+    return render(request, "user_list.html", {'form': form, 'users': users})

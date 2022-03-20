@@ -1,21 +1,15 @@
 {% extends 'Posts/post_list.html' %}
 
 {% block title %}
-Post {{tipo_vista}}
+User {{tipo_vista}}
 {% endblock title %}
 {% block body_block%}
 <div class="container">
-    {% if tipo_vista == "create" %}
-        <h2>Crear Post</h2>
-    {% else %}
-        <h2>Actualizar Post</h2>
-    {% endif %}
+    <h2>Crear Usuario</h2>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-    <br>
-    <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
 </div>
 {%endblock body_block%}
