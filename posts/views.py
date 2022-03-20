@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Post, Usuario
+from .models import Categoria, Post, Usuario
 # from .forms import  BusquedaForm
-from .forms import  PostForm, UsuarioBusquedaForm, UsuarioForm
+from .forms import  CategoriaForm, PostForm, UsuarioBusquedaForm, UsuarioForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 class PostListView(ListView):
@@ -63,17 +63,31 @@ class PostDeleteView(DeleteView):
 
 # ------------------------------------------------------
 class UserCreateView(CreateView):
-    model = Post
+    model = Usuario
     form_class = UsuarioForm
     template_name = 'user_create.html'
-    success_url = reverse_lazy('index')         
+    success_url = reverse_lazy('list_users')         
 
 
 def lista_usuarios(request):    
     nombre_usuario = request.GET.get('nombre', None)
-    if nombre_usuario is not None:
+    encontro = False
+    if nombre_usuario:
         users = Usuario.objects.filter(nombre__icontains=nombre_usuario)
+        encontro = True
     else:
         users = Usuario.objects.all()
+        encontro = False
     form = UsuarioBusquedaForm()
-    return render(request, "user_list.html", {'form': form, 'users': users})
+    return render(request, "user_list.html", {'form': form, 'users': users, 'encontro': encontro})
+
+# ------------------------------------------------------
+class CategoriaCreateView(CreateView):
+    model = Categoria
+    form_class = CategoriaForm
+    template_name = 'categoria_create.html'
+    success_url = reverse_lazy('list_categoria') 
+
+class CategoriaListView(ListView):
+    model = Categoria
+    template_name = 'categoria_list.html'

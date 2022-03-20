@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Usuario
+from .models import Categoria, Post, Usuario
 
 class PostForm(forms.ModelForm):
      class Meta:
@@ -34,7 +34,21 @@ class UsuarioForm(forms.ModelForm):
         }
 
 class UsuarioBusquedaForm(forms.Form):
-      nombre = forms.CharField(max_length=20)
+      nombre = forms.CharField(max_length=20, required=False)
       widgets = {                                                        # Me permite utilizar bootstrap para el form
            'nombre': forms.TextInput(attrs={'class':'form-control'}),
         }
+
+
+class CategoriaForm(forms.ModelForm):
+     class Meta:
+        model = Categoria
+        fields = '__all__'
+        widgets = {                                                        # Me permite utilizar bootstrap para el form
+           'nombre': forms.TextInput(attrs={'class':'form-control'}),
+        }
+      #   labels = {
+      #      'nombre': 'Nombre',
+      #      'apellido': 'Apellido',
+      #      'email': 'Email'
+      #   }

@@ -1,0 +1,25 @@
+
+{% extends 'Posts/post_list.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+{% block body_block%}
+
+<div class="container">
+    <h2>Listado de categorias</h2>
+        {% for categoria in object_list %}
+            <ul>
+                <li><b>{{categoria}}</b> | estado: 
+                    {% if  categoria.activo%}
+                        activo
+                    {% else %}
+                        oculto
+                    {% endif %}
+
+                </li>
+           </ul>
+        {% endfor %} 
+
+</div>
+{%endblock body_block%}
