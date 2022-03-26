@@ -8,31 +8,21 @@ class PostListView(ListView):
     model = Post
     template_name = 'Posts/post_list.html'
 
-    # def get_queryset(self):
-    #     gq = Post.objects.all()
-    #     post_a_buscar = self.request.GET.get('filter')  #Revisar porq me devuelve None!
-    #     print(post_a_buscar)
-    #     if post_a_buscar:
-    #         gq = gq.filter(title__icontains=post_a_buscar)
-    #     return gq
-
-    # def get(self, request):
-    #     title = request.GET.get('title', None)
-    #     if title is not None:
-    #         posts = Post.objects.filter(title__icontains=title)
-    #     else:
-    #         posts = Post.objects.all()
-    #     return posts
-            
+    def get_queryset(self):
+        gq = Post.objects.all()
+        post_a_buscar = self.request.GET.get('buscar')  # Necesito hacer referencia al nombre del input: 'buscar'!!
+        if post_a_buscar:
+            gq = gq.filter(title__icontains=post_a_buscar)
+        return gq           
 
 class PostDetailView(DetailView):
     model = Post
     template_name = 'Posts/post_detail.html'
 
 class PostCreateView(CreateView):
+    # Por defecto CreateView y UpdateView toman como template: 'nombreModelo_form'
     model = Post
     form_class = PostForm
-    template_name = 'Posts/post_form.html'
     success_url = reverse_lazy('post:list')         # Para redirigir al usuario luego de crear un post --> Hace referencia al name que se asigna en posts/urls.py --> NO al nombre del template
     #fields = ('title', 'content')                  # No permite configurar form_class y fields (solo uno)
 

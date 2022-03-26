@@ -13,11 +13,6 @@ class PostForm(forms.ModelForm):
            'title': 'Titulo',
            'content': 'Contenido',
         }
-
-# class BusquedaForm(forms.ModelForm):
-#    class Meta:
-#       fields = ('title',)
-
 class UsuarioForm(forms.ModelForm):
      class Meta:
         model = Usuario
