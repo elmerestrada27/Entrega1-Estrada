@@ -1,4 +1,4 @@
-# Entrega1-BARLETTA-PAZ
+# Entrega1-Estrada
 Proyecto del grupo de Elmer ESTRADA y Ezequiel BARLETTA PAZ
 Al ingresar a la pagina dentro de la barra de navegacion se encuentran los siguientes botones
   - Logo de 'Home' > mediante este boton Ud. puede en todo momento volver a la pagina de inicio.
