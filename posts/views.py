@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from .models import Categoria, Post, Usuario
-# from .forms import  BusquedaForm
 from .forms import  CategoriaForm, PostForm, UsuarioBusquedaForm, UsuarioForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 class PostListView(ListView):
     model = Post
     template_name = 'Posts/post_list.html'
+    ordering = ['-id']
 
     def get_queryset(self):
-        gq = Post.objects.all()
+        gq = Post.objects.all().order_by('-id')         # Los utlimos post se visualizaran primero
         post_a_buscar = self.request.GET.get('buscar')  # Necesito hacer referencia al nombre del input: 'buscar'!!
         if post_a_buscar:
             gq = gq.filter(title__icontains=post_a_buscar)
