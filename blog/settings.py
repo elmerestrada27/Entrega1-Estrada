@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     # Local apps
     'posts',
     'homepage',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -96,3 +97,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+LOGIN_URL = '/accounts/login/'      # Tengo un if user.is_authenticated para no mostrar acciones crear/editar/borrar
+                                    # Si saco estos if --> Cuando el usuario haga 'click' en uno de los botones realacionado a las acciones mencionadas
+                                    # Sera redireccionado a la vista de login

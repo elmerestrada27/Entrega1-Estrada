@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    Iniciar sesión
+{% endblock title %}
+
+{% block block_head %}
+    <link href={%static "css/signin.css"%} rel="stylesheet">
+{% endblock block_head %}
+    
+{% block body_block%}
+  
+    <body class="text-center">   
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      
+        <main class="form-signin">
+        <form method="post" action="">
+            {% csrf_token %} 
+            <img class="mb-4" src={%static "/assets/brand/login1.svg"%} alt="" width="102" height="87">
+            <h1>Iniciar Sesión</h1>
+            <hr>
+            <br>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="username" placeholder="Usuario" value="" required>
+                <label for="floatingInput">Usuario</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password" placeholder="Contraseña" value="" required>
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Recordarme
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar </button>
+        </form>
+        <br>
+            <a class="w-100 btn btn-lg btn-secondary" href={% url 'user:register' %}>Registrarse </a> 
+            <p class="mt-5 mb-4 text-light">- TECH BLOG -</p>
+        </main>
+    </body>
+
+{% endblock body_block%}

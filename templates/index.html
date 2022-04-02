@@ -20,8 +20,12 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href={%static 'css/styles.css'%} rel="stylesheet" />
+        
+        {% block block_head %}{% endblock block_head %}
+
+        
     </head>
-    <body id="page-top">
+     <body id="page-top">    {% comment %}El id es para redireccionar en la misma pagina {% endcomment %}
         <!-- Navigation-->
         {%block navbar_block%}
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top " id="mainNav">
@@ -39,9 +43,18 @@
                         <li class="nav-item"><a class="nav-link" href={% url 'user'%}>Nuevo usuario</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'list_users'%}>Usuarios</a></li> {% endcomment %}
                         {% comment %} <li class="nav-item"><a class="nav-link" href={% url 'post:create' %}>Nuevo post</a></li> {% endcomment %}
-                        <li class="nav-item"><a class="nav-link" href={% url 'post:list' %}>Posts</a></li>
+                        
+                        
+                        {% if user.is_authenticated %}  
+                            <li class="nav-item"><a class="nav-link" href={% url 'user:logout' %}>Cerrar sesión</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href={% url 'user:login' %}>Iniciar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link" href={% url 'user:register' %}>Registrarse</a></li>
+                        {% endif %}
+                        
                         {% comment %} <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> {% endcomment %}
+                        <li class="nav-item"><a class="nav-link" href={% url 'post:list' %}>Posts</a></li>
                         <li class="nav-item"><a class="nav-link" href={%url 'about'%}>About</a></li>
                     </ul>
                 </div>

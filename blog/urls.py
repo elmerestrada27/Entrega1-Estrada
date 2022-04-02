@@ -16,5 +16,8 @@ urlpatterns = [
     path('listado_categoria/', CategoriaListView.as_view(), name='list_categoria'),  
 
     path('about/', AboutView.as_view(), name='about'),
-    path('post/', include(('posts.urls'), namespace='post'))    # namespace funciona si se define el nobmre de app, en el archivo urls.py de la App
+    path('post/', include(('posts.urls'), namespace='post')),    # namespace funciona si se define el nobmre de app, en el archivo urls.py de la App
+
+    #path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include(('users.urls'), namespace='user'))    
 ]

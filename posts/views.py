@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Categoria, Post, Usuario
 from .forms import  CategoriaForm, PostForm, UsuarioBusquedaForm, UsuarioForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 class PostListView(ListView):
     model = Post
@@ -19,7 +20,7 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'Posts/post_detail.html'
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     # Por defecto CreateView y UpdateView toman como template: 'nombreModelo_form'
     model = Post
     form_class = PostForm
@@ -33,7 +34,7 @@ class PostCreateView(CreateView):
         })
         return context
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm                           
     success_url = reverse_lazy('post:list')  
@@ -45,7 +46,7 @@ class PostUpdateView(UpdateView):
         })
         return context
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     fields = '__all__'
     template_name = 'Posts/post_delete.html'        # DeleteView necesita una ventana de confirmacion para realizar la eliminacion

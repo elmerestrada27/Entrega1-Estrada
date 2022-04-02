@@ -1,0 +1,83 @@
+{% extends 'Users/login.html' %}
+
+{% block title %}
+    Registrarse
+{% endblock title %}
+
+{% block body_block%}
+
+<body class="bg-light">
+
+    <div class="container">
+        {% comment %} <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div> {% endcomment %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <br>
+            <br>
+            <img class="d-block mx-auto mb-4" src="https://www.svgrepo.com/show/107843/application-form.svg" alt="" >
+        </div>
+
+        <div class="col-md-8 order-md-1">
+            <h1 class="mb-3">Crea tu cuenta</h1>
+            
+            <form method="post" action="">
+                {% csrf_token %} 
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6>Nombre</h6>
+                        <input type="text" class="form-control" name="first_name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6>Apellido</h6>
+                        <input type="text" class="form-control" name="last_name" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Username</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Email</h6>
+                    <input type="email" class="form-control" name="email" placeholder="usuario@ejemplo.com" required>
+                </div>
+
+                <div class="mb-3 col-12">
+                    <h6>Contraseña</h6>
+                    <input type="password" class="form-control" name="password1" placeholder="" required>
+                </div>
+      
+                <div class="col-12">
+                    <h6>Repetir contraseña</h6>
+                    <input type="password" class="form-control" name="password2" placeholder="" required>
+                </div>
+
+                <hr class="mb-1">
+                <div class="py-4 text-center d-grid gap-2 col-5 mx-auto">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit"> Registrarse </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{%endblock body_block%}

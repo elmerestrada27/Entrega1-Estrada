@@ -1,21 +1,27 @@
 {% extends 'Posts/post_list.html' %}
 
 {% block title %}
-Post {{tipo_vista}}
+    Post {{tipo_vista}}
 {% endblock title %}
 {% block body_block%}
-<div class="container">
-    {% if tipo_vista == "create" %}
-        <h2>Crear Post</h2>
-    {% else %}
-        <h2>Actualizar Post</h2>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </form>
-    <br>
-    <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
-</div>
+
+    <div class="container">
+        {% if user.is_authenticated %} 
+            {% if tipo_vista == "create" %}
+                <h2>Crear Post</h2>
+            {% else %}
+                <h2>Actualizar Post</h2>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+            <br>
+            <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
+        {% else %}
+            <h2>Necesita permiso para acceder.</h2>
+        {% endif %}    
+    </div>
+
 {%endblock body_block%}
