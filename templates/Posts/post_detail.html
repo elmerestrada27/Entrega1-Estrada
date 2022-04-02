@@ -7,11 +7,10 @@
   <div class="container">
       <h2>{{post.title}}</h2>
       <small> 
-        {% comment %} @Autor {% endcomment %}- {{post.publish_date|date:'d/m/Y'}} 
+        {{post.author}} - {{post.publish_date|date:'d/m/Y'}} 
       </small>
       <hr>
       <dl>
-        {% comment %} <dt>{{post.publish_date}}</dt> {% endcomment %}
         <dd>{{post.content}}</dd>
       </dl>
 
