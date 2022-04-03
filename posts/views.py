@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from .models import Categoria, Post, Usuario
-from .forms import  CategoriaForm, PostForm, UsuarioBusquedaForm, UsuarioForm
+from .models import Category, Post
+from .forms import  CategoryForm, PostForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -24,6 +23,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     # Por defecto CreateView y UpdateView toman como template: 'nombreModelo_form'
     model = Post
     form_class = PostForm
+    template_name = 'Posts/postCreate_form.html'
     success_url = reverse_lazy('post:list')         # Para redirigir al usuario luego de crear un post --> Hace referencia al name que se asigna en posts/urls.py --> NO al nombre del template
     #fields = ('title', 'content')                  # No permite configurar form_class y fields (solo uno)
 
@@ -31,24 +31,25 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        context = super ().get_context_data(**kwargs)
-        context.update({                            # Se añade un nuevo dato de contexto para actualizar vista Form
-            'tipo_vista': 'create'
-        })
-        return context
+    # def get_context_data(self, **kwargs):         # Separe los templates para crear y actualizar, no es necesario distinguir de donde viene la peticion
+    #     context = super ().get_context_data(**kwargs)
+    #     context.update({                            # Se añade un nuevo dato de contexto para actualizar vista Form
+    #         'tipo_vista': 'create'
+    #     })
+    #     return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
-    form_class = PostForm                           
+    form_class = PostForm      
+    template_name = 'Posts/postUpdate_form.html'                     
     success_url = reverse_lazy('post:list')  
 
-    def get_context_data(self, **kwargs):           # Se añade un nuevo dato de contexto para actualizar vista Form
-        context = super ().get_context_data(**kwargs)
-        context.update({
-            'tipo_vista': 'update'
-        })
-        return context
+    # def get_context_data(self, **kwargs):           # Separe los templates para crear y actualizar, no es necesario distinguir de donde viene la peticion
+    #     context = super ().get_context_data(**kwargs)
+    #     context.update({                              # Se añade un nuevo dato de contexto para actualizar vista Form
+    #         'tipo_vista': 'update'
+    #     })
+    #     return context
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
@@ -57,32 +58,12 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('post:list')
 
 # ------------------------------------------------------
-class UserCreateView(CreateView):
-    model = Usuario
-    form_class = UsuarioForm
-    template_name = 'user_create.html'
-    success_url = reverse_lazy('list_users')         
-
-
-def lista_usuarios(request):    
-    nombre_usuario = request.GET.get('nombre', None)
-    encontro = False
-    if nombre_usuario:
-        users = Usuario.objects.filter(nombre__icontains=nombre_usuario)
-        encontro = True
-    else:
-        users = Usuario.objects.all()
-        encontro = False
-    form = UsuarioBusquedaForm()
-    return render(request, "user_list.html", {'form': form, 'users': users, 'encontro': encontro})
-
-# ------------------------------------------------------
-class CategoriaCreateView(CreateView):
-    model = Categoria
-    form_class = CategoriaForm
+class CategoryCreateView(CreateView):
+    model = Category
+    form_class = CategoryForm
     template_name = 'categoria_create.html'
     success_url = reverse_lazy('list_categoria') 
 
-class CategoriaListView(ListView):
-    model = Categoria
+class CategoryListView(ListView):
+    model = Category
     template_name = 'categoria_list.html'

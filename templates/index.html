@@ -11,8 +11,6 @@
             Tech Blog
             {% endblock title %}
         </title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -38,7 +36,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        {% comment %} <li class="nav-item"><a class="nav-link" href={% url 'categoria'%}>Nueva categoria</a></li>
+                        {% comment %} 
                         <li class="nav-item"><a class="nav-link" href={% url 'list_categoria'%}>Categorias</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'user'%}>Nuevo usuario</a></li>
                         <li class="nav-item"><a class="nav-link" href={% url 'list_users'%}>Usuarios</a></li> {% endcomment %}
@@ -47,6 +45,7 @@
                         
                         {% if user.is_authenticated %}  
                             <li class="nav-item"><a class="nav-link" href={% url 'user:logout' %}>Cerrar sesión</a></li>
+                            <li class="nav-item"><a class="nav-link" href={% url 'list_categoria'%}>Categorias</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href={% url 'user:login' %}>Iniciar sesión</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'user:register' %}>Registrarse</a></li>

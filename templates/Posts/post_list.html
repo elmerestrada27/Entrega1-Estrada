@@ -33,6 +33,7 @@ Posts
                 <th scope="col">#</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Usuario</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Fecha de Creacion</th>
                 <th scope="col">Ultima actualizacion</th>
                 <th scope="col">Acciones</th>
@@ -44,14 +45,17 @@ Posts
                             <td>{{post.id}}</td>
                             <td>{{post.title}}</td>
                             <td>{{post.author}}</td> 
+                            <td>{{post.category}}</td> 
                             <td>{{post.publish_date|date:'d/m/Y'}}</td>
                             <td>{{post.last_update|date:'d/m/Y H:i'}}</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'post:detail' post.id %}"> Ver detalle <i class='fas fa-eye'></i></a>
-                                {% if user.is_authenticated %} 
-                                    <a class="btn btn-primary"  href="{% url 'post:update' post.id %}"> Editar <i class='fas fa-pen'></i></a>
-                                    <a class="btn btn-danger"  href="{% url 'post:delete' post.id %}"> Eliminar <i class='fas fa-trash'></i></a>
-                                {% endif %}
+                                {% comment %} {% if user.is_authenticated %}  {% endcomment %}
+                                    {% if user.id == post.author.id %}
+                                        <a class="btn btn-primary"  href="{% url 'post:update' post.id %}"> Editar <i class='fas fa-pen'></i></a>
+                                        <a class="btn btn-danger"  href="{% url 'post:delete' post.id %}"> Eliminar <i class='fas fa-trash'></i></a>
+                                    {% endif %}
+                                {% comment %} {% endif %} {% endcomment %}
                             </td>
                         </tr>
                 {% endfor %} 

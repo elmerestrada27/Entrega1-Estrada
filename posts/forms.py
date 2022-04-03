@@ -1,49 +1,26 @@
 from django import forms
-from .models import Categoria, Post, Usuario
-
+from .models import Category, Post
 class PostForm(forms.ModelForm):
      class Meta:
         model = Post
-        fields = ('title', 'content',)
+        fields = ('title', 'category', 'content',)
         widgets = {                                                        # Me permite utilizar bootstrap para el form
            'title': forms.TextInput(attrs={'class':'form-control'}),
+           'category': forms.Select(attrs={'class':'form-control'}),
            'content': forms.Textarea(attrs={'class':'form-control'}),
         }
         labels = {
            'title': 'Titulo',
+           'category': 'Categoria',
            'content': 'Contenido',
         }
-class UsuarioForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
      class Meta:
-        model = Usuario
+        model = Category
         fields = '__all__'
         widgets = {                                                        # Me permite utilizar bootstrap para el form
-           'nombre': forms.TextInput(attrs={'class':'form-control'}),
-           'apellido': forms.TextInput(attrs={'class':'form-control'}),
-           'email': forms.TextInput(attrs={'class':'form-control'}),
+           'name': forms.TextInput(attrs={'class':'form-control'}),
         }
         labels = {
-           'nombre': 'Nombre',
-           'apellido': 'Apellido',
-           'email': 'Email'
+           'name': 'Nombre',
         }
-
-class UsuarioBusquedaForm(forms.Form):
-      nombre = forms.CharField(max_length=20, required=False)
-      widgets = {                                                        # Me permite utilizar bootstrap para el form
-           'nombre': forms.TextInput(attrs={'class':'form-control'}),
-        }
-
-
-class CategoriaForm(forms.ModelForm):
-     class Meta:
-        model = Categoria
-        fields = '__all__'
-        widgets = {                                                        # Me permite utilizar bootstrap para el form
-           'nombre': forms.TextInput(attrs={'class':'form-control'}),
-        }
-      #   labels = {
-      #      'nombre': 'Nombre',
-      #      'apellido': 'Apellido',
-      #      'email': 'Email'
-      #   }

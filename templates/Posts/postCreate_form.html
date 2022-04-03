@@ -6,12 +6,8 @@
 {% block body_block%}
 
     <div class="container">
-        {% if user.is_authenticated %} 
-            {% if tipo_vista == "create" %}
-                <h2>Crear Post</h2>
-            {% else %}
-                <h2>Actualizar Post</h2>
-            {% endif %}
+        {% if user.is_authenticated %}     {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}
+            <h2>Crear Post</h2>
             <form method="POST">
                 {% csrf_token %}
                 {{form.as_p}}
@@ -21,7 +17,7 @@
             <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
         {% else %}
             <h2>Necesita permiso para acceder.</h2>
-        {% endif %}    
+        {% endif %}   
     </div>
 
 {%endblock body_block%}
