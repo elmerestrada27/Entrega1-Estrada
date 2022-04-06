@@ -1,5 +1,8 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
+from posts.models import Post
 from .forms import ProfileEditForm, RegisterForm
+from .models import Profile
 from django.urls import reverse_lazy
 
 class UserRegisterView(generic.CreateView):
@@ -7,9 +10,20 @@ class UserRegisterView(generic.CreateView):
     template_name = 'Users/user_register.html'
     success_url = reverse_lazy('user:login')
 
+class ProfileDetailView(generic.DetailView):
+    model = Profile
+    template_name = 'Users/profile_detail.html'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        page_user = get_object_or_404(Profile, pk=self.kwargs['pk'])
+        mis_posts = Post.objects.filter(author=page_user.user)
+        context.update({'page_user':page_user, 'mis_posts':mis_posts})
+        return context
+
 class UserEditView(generic.UpdateView):
     form_class = ProfileEditForm
-    template_name = 'Users/edit_profile.html'
+    template_name = 'Users/edit_user.html'
     success_url = reverse_lazy('index')
 
     def get_object(self):

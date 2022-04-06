@@ -1,0 +1,74 @@
+{% extends 'Users/login.html' %}
+
+{% block title %}
+    Perfil
+{% endblock title %}
+
+{% block body_block%}
+
+<body class="bg-light">
+
+    <div class="container">
+        {% comment %} <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Checkout form</h2>
+        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div> {% endcomment %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <br>
+            <br>
+            <img class="d-block mx-auto mb-4" src="https://www.svgrepo.com/show/290105/user-business-and-finance.svg" alt="" >
+        </div>
+
+        <div class="col-md-8 order-md-1">
+            <h1 class="mb-3">Editar Perfil</h1>
+            <hr>
+            {{user.profile.biography}}
+            <form method="post" action="">
+                {% csrf_token %} 
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h6>Nombre</h6>
+                        {{form.first_name}}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <h6>Apellido</h6>
+                        {{form.last_name}}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Username</h6>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        {{form.username}}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <h6>Email</h6>
+                    {{form.email}}
+                </div>
+
+                <div class="py-4 text-center d-grid gap-2 col-5 mx-auto">
+                    <hr>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit"> Guardar datos </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{%endblock body_block%}

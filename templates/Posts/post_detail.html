@@ -1,27 +1,42 @@
 {% extends 'Posts/post_list.html' %}
+{% load static %}
 {% block title %}
   Post {{post.id}}
 {% endblock title %}
 {% block body_block%}
-
-  <div class="container">
-      <h2>{{post.title}}</h2>
-      <small> 
-        {{post.author}} - {{post.publish_date|date:'d/m/Y'}} - {{post.category}}
-      </small>
-      <hr>
-      <dl>
-        <dd>{{post.content}}</dd>
-      </dl>
-
-      <h4></h4>
-      {% comment %} {% if user.is_authenticated %}  {% endcomment %}
-        {% if user.id == post.author.id %}
-          <a class="btn btn-primary" href={% url 'post:update' post.id %}>Modificar Post <i class='fas fa-pen'></i></a>
-          <a class="btn btn-danger" href={% url 'post:delete' post.id %}>Eliminar Post <i class='fas fa-trash'></i></a>
-        {% endif %}  
-      {% comment %} {% endif %} {% endcomment %}
-      <a class="btn btn-primary" href={% url 'post:list' %}>Volver</a>
-  </div>
+    <br>
+    <div class="container">  
+        <div class="card">
+            <div class="card-body">
+                <h2>{{post.title}}</h2>
+                <h3>{{post.subtitle}}</h3>
+                <small> 
+                    <b>{{post.author}} - {{post.publish_date|date:'d/m/Y'}} - {{post.category}}</b>
+                </small>
+                <hr>
+                <div class="row">
+                    <div class="col-md-auto">
+                        {% if post.content_image %}
+                            <img class="img-thumbnail" width="304" height="236" src="{{post.content_image.url}}">
+                            <br>      
+                            <br>      
+                        {% endif %} 
+                    </div>
+                    <div class="col">
+                        <br>
+                        {{post.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% comment %} {% if user.is_authenticated %}  {% endcomment %}
+            {% if user.id == post.author.id %}
+            <a class="btn btn-primary" href={% url 'post:update' post.id %}>Modificar Post <i class='fas fa-pen'></i></a>
+            <a class="btn btn-danger" href={% url 'post:delete' post.id %}>Eliminar Post <i class='fas fa-trash'></i></a>
+            {% endif %}  
+        {% comment %} {% endif %} {% endcomment %}
+        <a class="btn btn-secondary" href={{request.META.HTTP_REFERER|escape}}>Volver</a>
+    </div>
   
 {%endblock body_block%}

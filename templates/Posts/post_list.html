@@ -10,9 +10,9 @@ Posts
 {%endblock navbar_block%}
 
 {% block body_block%}
-
+    <br>
     <div class="container">
-        <h2>Listado de posts</h2>
+        <h2 class= "mb-3">Listado de posts</h2>
         <!-- Buscador y boton crear Posts-->   
         <div class="d-grid gap-2 d-md-flex">
             <div class="col-md-3 justify-content-md-between">
@@ -22,7 +22,7 @@ Posts
                 </form>
             </div>
             {% if user.is_authenticated %}       
-                <a class="btn btn-primary " href="{% url 'post:create' %}"><i class='fas fa-plus-circle' style='font-size:19px'></i> Crear nuevo Post </a> 
+                <a class="btn btn-primary" href="{% url 'post:create' %}"><i class='fas fa-plus-circle' style='font-size:19px'></i> Crear nuevo Post </a> 
             {% endif %}
         </div>   
 

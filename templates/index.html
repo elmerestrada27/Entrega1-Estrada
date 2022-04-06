@@ -47,6 +47,7 @@
                             <li class="nav-item"><a class="nav-link" href={% url 'user:logout' %}>Cerrar sesión</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'list_categoria'%}>Categorias</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'user:perfil'%}>Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href={% url 'user:detail_profile' user.id%}>Perfil View</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href={% url 'user:login' %}>Iniciar sesión</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'user:register' %}>Registrarse</a></li>
@@ -55,7 +56,7 @@
                         {% comment %} <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li> {% endcomment %}
                         <li class="nav-item"><a class="nav-link" href={% url 'post:list' %}>Posts</a></li>
-                        <li class="nav-item"><a class="nav-link" href={%url 'about'%}>About</a></li>
+                        <li class="nav-item"><a class="nav-link" href={%url 'about'%}>Acerca de mí</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,7 +69,7 @@
             <div class="container">
                 <div class="masthead-subheading">Bienvenido!</div>
                 <div class="masthead-heading text-uppercase">Tech Blog</div>
-                <a class="btn btn-primary btn-xl text-uppercase" href="#services">Más sobre el blog</a>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#!">Más sobre el blog</a>
             </div>
         </header>
         {% comment %} <!-- Services-->

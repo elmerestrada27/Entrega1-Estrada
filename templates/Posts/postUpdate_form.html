@@ -4,17 +4,18 @@
     Post {{tipo_vista}}
 {% endblock title %}
 {% block body_block%}
-
+<br>
     <div class="container">
             {% if user.id == post.author.id %}          {# Si el usuario que intenta acceder no coincide --> Msj de error#}
-                <h2>Actualizar Post</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}
-                <form method="POST">
+                <h2 class="mb-3">Actualizar Post</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{form.as_p}}
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <strong>{{form.as_p}}</strong>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a class="btn btn-secondary" href="{% url 'post:list'%}"> Salir sin guardar </a>
+                    </div>
                 </form>
-                <br>
-                <a class="btn btn-primary" href="{% url 'post:list'%}"> Salir sin guardar </a>
             {% else %}
                 <h2>Necesita permiso para acceder.</h2>
             {% endif %}

@@ -92,15 +92,18 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
-
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'        # Cuando un usuario inicia sesion --> Redirect: Index
+LOGOUT_REDIRECT_URL = 'index'       # Cuando un usuario cierra sesion --> Redirect: Index
 
 LOGIN_URL = '/accounts/login/'      # Tengo un if user.is_authenticated para no mostrar acciones crear/editar/borrar
                                     # Si saco estos if --> Cuando el usuario haga 'click' en uno de los botones realacionado a las acciones mencionadas
                                     # Sera redireccionado a la vista de login
+
+MEDIA_URL = '/media/'                           # Config para guardar imagenes
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

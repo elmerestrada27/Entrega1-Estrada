@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    Perfil de usuario
+{% endblock title %}
+
+{%block navbar_block%}
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-shrink" id="mainNav">   
+{%endblock navbar_block%}
+
+{% block body_block%}
+    <br>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="d-flex justify-content-between align-items-center mx-3 mt-3">
+                <h2>Mi perfil</h2>
+                <a class="btn btn-primary btn-sm" href="#!">Editar <i class="fas fa-user-edit"></i></a>
+            </div>
+            
+            <hr>
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    <br>
+                    {% if page_user.avatar %}
+                            <img src="{{ page_user.avatar.url}}" class="card-img mx-3">                       
+                    {% else %}
+                        <img src="{% static 'assets/brand/default_profile.svg' %}" class="card-img mx-3">
+                    {% endif %}
+                </div>
+                <div class="col-md-10 col-md-offset-2">
+                    <div class="card-body">
+                        <h5 class="card-title" >
+                            {{ page_user.user.first_name }}
+                            {{ page_user.user.last_name}}
+                        </h5>
+                        <p class="small text-muted">
+                            <a href="#!">Perfil</a>
+                            {% comment %} {% if page_user.website_url %} {% endcomment %}
+                                | <a href="#!">Website</a>
+                            {% comment %} {% endif %} {% endcomment %}
+                        </p>  
+                        <p class="card-text">
+                            {{ page_user.biography }}
+                            <br>
+                            <div class="list-group" style="width: 500px">
+                                <div class="list-group-item list-group-item-action active">
+                                    <strong>Mis Posts: @{{ page_user.user.username }}</strong>
+                                </div>
+                                {% for post in mis_posts  %}
+                                    <a class="list-group-item list-group-item-action" href="{% url 'post:detail' post.id %}"> <strong>{{post.title}}</strong>- {{post.category}} - {{post.publish_date|date:'d/m/Y'}} </a>
+                                {%endfor %}
+                              </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+{%endblock body_block%}
+
+{%block js_block%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> 
+{%endblock js_block%}
