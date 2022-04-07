@@ -61,9 +61,9 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
-    template_name = 'categoria_create.html'
+    template_name = 'Posts/categoria_create.html'
     success_url = reverse_lazy('list_categoria') 
 
 class CategoryListView(ListView):
     model = Category
-    template_name = 'categoria_list.html'
+    template_name = 'Posts/categoria_list.html'

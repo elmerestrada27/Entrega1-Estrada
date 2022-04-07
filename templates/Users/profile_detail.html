@@ -14,8 +14,20 @@
         <div class="card mb-3">
             <div class="d-flex justify-content-between align-items-center mx-3 mt-3">
                 <h2>Mi perfil</h2>
-                <a class="btn btn-primary btn-sm" href="#!">Editar <i class="fas fa-user-edit"></i></a>
+                <div class="btn-group" role="group">
+                    {% if user.id == profile.user.id %}
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Editar <i class="fas fa-user-edit"></i></button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href={% url 'user:edit_profile' page_user.user.id %}>Editar Perfil</a></li>
+                        <li><a class="dropdown-item" href={% url 'user:edit_user'%}>Editar datos personales</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+                {% comment %} <a class="btn btn-primary btn-sm " href={% url 'user:edit_profile' page_user.user.id %}>Editar Perfil <i class="fas fa-user-edit"></i></a> {% endcomment %}
             </div>
+            {% comment %} <p align="right" class="mb-0">
+                <a class="btn btn-primary btn-sm" href={% url 'user:edit_user'%}>Editar datos personales <i class="fas fa-user-edit"></i></a>
+            </p> {% endcomment %}
             
             <hr>
             <div class="row no-gutters">
@@ -46,9 +58,13 @@
                                 <div class="list-group-item list-group-item-action active">
                                     <strong>Mis Posts: @{{ page_user.user.username }}</strong>
                                 </div>
-                                {% for post in mis_posts  %}
-                                    <a class="list-group-item list-group-item-action" href="{% url 'post:detail' post.id %}"> <strong>{{post.title}}</strong>- {{post.category}} - {{post.publish_date|date:'d/m/Y'}} </a>
-                                {%endfor %}
+                                {% if mis_posts %}
+                                    {% for post in mis_posts  %}
+                                        <a class="list-group-item list-group-item-action" href="{% url 'post:detail' post.id %}"> <strong>{{post.title}}</strong>- {{post.category}} - {{post.publish_date|date:'d/m/Y'}} </a>
+                                    {%endfor %}
+                                {% else %}
+                                    <a class="list-group-item list-group-item-action"> Sin posts registrados. </a>
+                                {% endif %}
                               </div>
                         </p>
                     </div>

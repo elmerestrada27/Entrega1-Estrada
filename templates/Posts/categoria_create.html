@@ -1,0 +1,17 @@
+{% extends 'Posts/post_list.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+{% block body_block%}
+<div class="container">
+    <br>
+    <h2>Crear Categoria</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+
+</div>
+{%endblock body_block%}

@@ -9,6 +9,8 @@ class PostForm(forms.ModelForm):
            'subtitle': forms.TextInput(attrs={'class':'form-control'}),
            'category': forms.Select(attrs={'class':'form-control'}),
            'content': forms.Textarea(attrs={'class':'form-control'}),
+           'content_image': forms.FileInput(attrs={'class':'form-control'}),
+           
         }
         labels = {
            'title': 'Titulo',

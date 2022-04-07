@@ -13,7 +13,7 @@ Posts
     <br>
     <div class="container">
         <h2 class= "mb-3">Listado de posts</h2>
-        <!-- Buscador y boton crear Posts-->   
+        <!-- Buscador y boton crear Posts -->   
         <div class="d-grid gap-2 d-md-flex">
             <div class="col-md-3 justify-content-md-between">
                 <form class="d-flex" method="get">
@@ -27,10 +27,10 @@ Posts
         </div>   
 
         <br>
-        <!-- Tabla de Posts-->
+        <!-- Tabla de Posts -->
         <table class="table table-striped table-bordered ">
             <thead class="thead-dark">
-                <th scope="col">#</th>
+                {% comment %} <th scope="col">#</th> {% endcomment %}
                 <th scope="col">Titulo</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Categoria</th>
@@ -42,9 +42,9 @@ Posts
                 {% if post_list %}
                     {% for post in post_list  %}
                         <tr>
-                            <td>{{post.id}}</td>
-                            <td>{{post.title}}</td>
-                            <td>{{post.author}}</td> 
+                            {% comment %} <td>{{post.id}}</td> {% endcomment %}
+                            <td><strong>{{post.title}}</strong></td>
+                            <td>{{post.author}}</td>
                             <td>{{post.category}}</td> 
                             <td>{{post.publish_date|date:'d/m/Y'}}</td>
                             <td>{{post.last_update|date:'d/m/Y H:i'}}</td>

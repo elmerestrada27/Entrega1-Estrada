@@ -9,9 +9,9 @@
         <div class="card">
             <div class="card-body">
                 <h2>{{post.title}}</h2>
-                <h3>{{post.subtitle}}</h3>
+                <h4>{{post.subtitle}}</h4>
                 <small> 
-                    <b>{{post.author}} - {{post.publish_date|date:'d/m/Y'}} - {{post.category}}</b>
+                    <b>@<a href={% url 'user:detail_profile' post.author.profile.id%} style="color:#000000">{{post.author}}</a> - {{post.publish_date|date:'d/m/Y'}} - {{post.category}}</b>
                 </small>
                 <hr>
                 <div class="row">

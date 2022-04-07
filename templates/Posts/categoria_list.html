@@ -1,0 +1,25 @@
+
+{% extends 'Posts/post_list.html' %}
+
+{% block title %}
+Categorias
+{% endblock title %}
+{% block body_block%}
+<br>
+<div class="container">
+    <h2 class="mb-3">Listado de categorias</h2>
+    {% if user.is_authenticated %}   
+        <a class="btn btn-primary " href="{% url 'post:categoria' %}"><i class='fas fa-plus-circle' style='font-size:19px'></i> Crear nueva Categoria </a> 
+        <br>
+        <br>
+    {% endif %}
+        {% for categoria in object_list %}
+            <ul>
+                <li>
+                    <b>{{categoria}}</b>
+                </li>
+           </ul>
+        {% endfor %} 
+
+</div>
+{%endblock body_block%}

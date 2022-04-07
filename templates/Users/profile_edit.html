@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    Perfil de usuario
+{% endblock title %}
+
+{%block navbar_block%}
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-shrink" id="mainNav">   
+{%endblock navbar_block%}
+
+{% block body_block%}
+
+<br>
+    <div class="container">
+        {% if user.id == profile.user.id %}          {# Si el usuario que intenta acceder no coincide --> Msj de error#}    
+            <h2 class="mb-3">Actualizar Perfil</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <strong>{{form.as_p}}</strong>
+                <div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a class="btn btn-secondary" href="{% url 'user:detail_profile' user.profile.id%}"> Salir sin guardar </a>
+                </div>
+            </form>
+        {% else %}
+            <h2>Necesita permiso para acceder.</h2>
+        {% endif %}
+
+    </div>
+
+{%endblock body_block%}
+
+{%block js_block%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> 
+{%endblock js_block%}
