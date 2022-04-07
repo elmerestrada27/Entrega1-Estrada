@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from .models import Profile
 
@@ -19,6 +19,14 @@ class UserEditForm(UserChangeForm):
            'email': forms.EmailInput(attrs={'class':'form-control'}),
         }
         
+class ChangePasswordForm(PasswordChangeForm):
+
+    def __init__(self,*args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+        self.fields['old_password'].widget.attrs.update({'class': 'form-control', 'placeholder': "Contraseña actual"})
+        self.fields['new_password1'].widget.attrs.update({'class': 'form-control', 'placeholder': "Nueva contraseña"})
+        self.fields['new_password2'].widget.attrs.update({'class': 'form-control', 'placeholder': "Repetir contraseña"})
+    
 class ProfileEditForm(forms.ModelForm):
         class Meta:
             model = Profile

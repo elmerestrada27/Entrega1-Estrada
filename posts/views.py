@@ -62,7 +62,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'Posts/categoria_create.html'
-    success_url = reverse_lazy('list_categoria') 
+    success_url = reverse_lazy('post:list_categoria') 
 
 class CategoryListView(ListView):
     model = Category
