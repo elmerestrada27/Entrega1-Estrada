@@ -23,13 +23,13 @@
 
         
     </head>
-     <body id="page-top">    {% comment %}El id es para redireccionar en la misma pagina {% endcomment %}
-        <!-- Navigation-->
+     <body id="page-top">
+        <!-- Navbar -->
         {%block navbar_block%}
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top " id="mainNav">
         {%endblock navbar_block%}
             <div class="container">
-                <a class="navbar-brand" href={%url 'index'%}><img src={%static "assets/img/iconhome.svg"%} alt="..." /></a>
+                <a class="navbar-brand" href={%url 'index'%}><img src={%static "/img/iconhome.svg"%} alt="..." /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -49,7 +49,7 @@
                             {% if user.profile.avatar %}
                                 <img class="rounded-circle border border-warning" src={{user.profile.avatar.url}} alt="..." height="38" width="38" />
                             {% else %}
-                                <img class="rounded-circle border border-warning" src="{% static 'assets/brand/default_profile.svg' %}"alt="..." height="38" width="38" />                            
+                                <img class="rounded-circle border border-warning" src="{% static 'img/default_profile.svg' %}"alt="..." height="38" width="38" />                            
                             {% endif %}
                         {% endif %}
                     </ul>
@@ -67,6 +67,16 @@
                 {% comment %} <a class="btn btn-primary btn-xl text-uppercase" href="#!">Más sobre el blog</a> {% endcomment %}
             </div>
         </header>
+        <!-- Messages-->
+        <div class="container text-center">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        {{ message }}
+                    </div>
+                 {% endfor %}
+            {% endif%}
+         </div> 
 
         <!-- Publicaciones recientes-->
         <section class="page-section bg-light" id="portfolio">
@@ -74,7 +84,7 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Publicaciones recientes</h2>
                     <br>
-                    {% comment %} <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> {% endcomment %}
+                    {% comment %} <h3 class="..Un subtitulo...</h3> {% endcomment %}
                     <hr>
                     <br>
                 </div>
@@ -91,7 +101,7 @@
                                         {% if post.content_image %}
                                             <img class="card-img" src={{post.content_image.url}} alt="..." width="600" height="350"/>
                                         {% else %}
-                                            <img class="img-fluid" src="{% static 'assets/brand/default_profile.svg' %}"alt="..." width="600" height="450"/>
+                                            <img class="card-img" src="{% static 'img/default_profile.svg' %}"alt="..." width="600" height="350"/>
                                         {% endif %}
                                     </a>
                                     <div class="portfolio-caption">

@@ -3,8 +3,9 @@
 {% block title %}
     Post {{tipo_vista}}
 {% endblock title %}
+
 {% block body_block%}
-<br>
+    <br>
     <div class="container">
             {% if user.id == post.author.id %}          {# Si el usuario que intenta acceder no coincide --> Msj de error#}
                 <h2 class="mb-3">Actualizar Post</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}

@@ -10,7 +10,7 @@
 
 {% block body_block%}
 
-<br>
+    <br>
     <div class="container">
         {% if user.id == profile.user.id %}          {# Si el usuario que intenta acceder no coincide --> Msj de error#}    
             <h2 class="mb-3">Actualizar Perfil</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}

@@ -2,8 +2,9 @@
 {% block title %}
     Post delate
 {% endblock title %}
+
 {% block body_block%}
-<br>
+    <br>
     <div class="container">
         {% if user.is_authenticated %}
             <h3 class="mb-3" style="text-align:center">¿Esta seguro que quiere eliminar el post: "{{post.title}}"?</h3>
