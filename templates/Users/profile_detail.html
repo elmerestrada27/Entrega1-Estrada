@@ -46,11 +46,9 @@
                             {{ page_user.user.last_name}}
                         </h5>
                         <p class="small text-muted">
-                            <a href="#!">Perfil</a>
-                            {% comment %} {% if page_user.website_url %} {% endcomment %}
-                                | <a href="#!">Website</a>
-                            {% comment %} {% endif %} {% endcomment %}
-                        </p>  
+                            {% if page_user.website_url %}
+                                <a href="{{page_user.website_url}}">Website</a>
+                            {% endif %} 
                         <p class="card-text">
                             {{ page_user.biography }}
                             <br>

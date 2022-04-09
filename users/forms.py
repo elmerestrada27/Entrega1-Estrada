@@ -42,12 +42,14 @@ class ChangePasswordForm(PasswordChangeForm):
 class ProfileEditForm(forms.ModelForm):
         class Meta:
             model = Profile
-            fields = ['biography','avatar']
+            fields = ['biography','website_url','avatar']
             widgets = {
                 'biography': forms.Textarea(attrs={'class':'form-control'}),
+                'website_url': forms.TextInput(attrs={'class':'form-control'}),
                 'avatar': forms.FileInput(attrs={'class':'form-control'}),
             }
             labels = {
             'biography': 'Biografía',
+            'website_url': 'Página web',
             'avatar': 'Avatar',
             }
