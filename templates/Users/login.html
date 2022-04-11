@@ -73,25 +73,14 @@
                     <div class="alert alert-danger">{{ error|escape }}</div>
                 {% endfor %}
             {% endif %} 
-
-            <p class="mt-5 mb-4 text-light">- TECH BLOG -</p>
         </main>
     </body>
 
 {% endblock body_block%}
 
-
-
-<form action="/" method="post">
-    {% for field in form.visible_fields %}
-    <div>
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
+{% block footer_block%}
+    <!-- Footer-->
+    <div class="text-center" style="color:#ffff">
+        - TECH BLOG -
     </div>
-    {% endfor %}
-    {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-    {% endfor %}
-    {% csrf_token %}
-    <input type="submit" value="Submit" />
-</form>
+{% endblock footer_block %}

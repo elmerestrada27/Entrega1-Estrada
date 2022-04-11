@@ -128,9 +128,11 @@
                 <div class="row align-items-center">
                     {% comment %} <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0"> {% endcomment %}
-                    <div class="text-center">
-                        - TECH BLOG -
-                    </div>
+                    {% block footer_block%}
+                        <div class="text-center">
+                            - TECH BLOG -
+                        </div> 
+                    {% endblock footer_block %}
                     {% comment %} <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
                         <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
@@ -138,6 +140,7 @@
                 </div>
             </div>
         </footer>
+       
 
         {%block js_block%}
             <!-- Bootstrap core JS-->
