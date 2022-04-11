@@ -11,6 +11,7 @@
                 <h2 class="mb-3">Actualizar Post</h2>                {# Si intenta acceder por url (sin estar logeado) --> Redirecciona a login // Gracias a LOGIN_URL = '/accounts/login/' (Seteado en settings)#}
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {{form.media}}
                     <strong>{{form.as_p}}</strong>
                     <div>
                         <button type="submit" class="btn btn-primary">Guardar</button>

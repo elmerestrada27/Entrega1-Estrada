@@ -50,7 +50,7 @@
                                 <a href="{{page_user.website_url}}">Website</a>
                             {% endif %} 
                         <p class="card-text">
-                            {{ page_user.biography }}
+                            {{ page_user.biography|safe }}
                             <br>
                             <div class="list-group" style="width: 500px">
                                 <div class="list-group-item list-group-item-action active">

@@ -24,9 +24,10 @@
                             <br>      
                         {% endif %} 
                     </div>
-                    <div class="col">
+                    <div class=" col-lg">
                         <br>
-                        {{post.content}}
+                        {% comment %} {{post.content}} {% endcomment %}
+                        {{post.content|safe}}
                     </div>
                 </div>
             </div>
