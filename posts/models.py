@@ -10,7 +10,6 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255)
-    # content = models.TextField(max_length=255)
     content = RichTextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     content_image = models.ImageField(null=True, blank=True, upload_to='images/post/')

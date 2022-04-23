@@ -25,32 +25,16 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     template_name = 'Posts/postCreate_form.html'
     success_url = reverse_lazy('post:list')         # Para redirigir al usuario luego de crear un post --> Hace referencia al name que se asigna en posts/urls.py --> NO al nombre del template
-    #fields = ('title', 'content')                  # No permite configurar form_class y fields (solo uno)
 
-    def form_valid(self, form):                     # Esto me permite asignar un Autor (usuario logueadi) a un post, cuando este es creado
+    def form_valid(self, form):                     # Esto me permite asignar un Autor (usuario logueado) a un post, cuando este es creado
         form.instance.author = self.request.user
         return super().form_valid(form)
-
-    # def get_context_data(self, **kwargs):         # Separe los templates para crear y actualizar, no es necesario distinguir de donde viene la peticion
-    #     context = super ().get_context_data(**kwargs)
-    #     context.update({                            # Se añade un nuevo dato de contexto para actualizar vista Form
-    #         'tipo_vista': 'create'
-    #     })
-    #     return context
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm      
     template_name = 'Posts/postUpdate_form.html'                     
     success_url = reverse_lazy('post:list')  
-
-    # def get_context_data(self, **kwargs):           # Separe los templates para crear y actualizar, no es necesario distinguir de donde viene la peticion
-    #     context = super ().get_context_data(**kwargs)
-    #     context.update({                              # Se añade un nuevo dato de contexto para actualizar vista Form
-    #         'tipo_vista': 'update'
-    #     })
-    #     return context
-
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     fields = '__all__'

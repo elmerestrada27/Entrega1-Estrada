@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top " id="mainNav">
         {%endblock navbar_block%}
             <div class="container">
-                <a class="navbar-brand" href={%url 'index'%}><img src={%static "/img/iconhome.svg"%} alt="..." /></a>
+                <a class="navbar-brand" href={%url 'homepage:index'%}><img src={%static "/img/iconhome.svg"%} alt="..." /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
@@ -42,7 +42,7 @@
                             <li class="nav-item"><a class="nav-link" href={% url 'user:login' %}>Iniciar sesión</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'user:register' %}>Registrarse</a></li>
                         {% endif %}
-                        <li class="nav-item"><a class="nav-link " href={%url 'about'%}>Acerca de mí</a></li>
+                        <li class="nav-item"><a class="nav-link " href={%url 'homepage:about'%}>Acerca de mí</a></li>
                         {% if user.is_authenticated %}  
                             <li class="nav-item"><a class="nav-link" href={% url 'user:logout' %}>Cerrar sesión</a></li>
                             <li class="nav-item"><a class="nav-link" href={% url 'user:detail_profile' user.profile.id%}>@{{user.username}}</a></li>
@@ -64,7 +64,6 @@
             <div class="container">
                 <div class="masthead-subheading">Bienvenido!</div>
                 <div class="masthead-heading text-uppercase">Tech Blog</div>
-                {% comment %} <a class="btn btn-primary btn-xl text-uppercase" href="#!">Más sobre el blog</a> {% endcomment %}
             </div>
         </header>
         <!-- Messages-->
@@ -83,10 +82,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Publicaciones recientes</h2>
-                    <br>
-                    {% comment %} <h3 class="..Un subtitulo...</h3> {% endcomment %}
-                    <hr>
-                    <br>
+                    <br><hr><br>
                 </div>
 
                 <div class="row">
@@ -126,17 +122,11 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    {% comment %} <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
-                    <div class="col-lg-4 my-3 my-lg-0"> {% endcomment %}
                     {% block footer_block%}
                         <div class="text-center">
                             - TECH BLOG -
                         </div> 
                     {% endblock footer_block %}
-                    {% comment %} <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-                    </div> {% endcomment %}
                 </div>
             </div>
         </footer>
