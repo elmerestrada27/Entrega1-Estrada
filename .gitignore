@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+################################
+/media
+################################
+
 # Distribution / packaging
 .Python
 build/
@@ -129,6 +133,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+
 
 # mypy
 .mypy_cache/

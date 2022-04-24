@@ -59,5 +59,5 @@ class ProfileEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateVie
     model = Profile
     form_class = ProfileEditForm
     template_name = 'Users/profile_edit.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('homepage:index')
     success_message = "Sus datos fueron actualizados correctamente."
