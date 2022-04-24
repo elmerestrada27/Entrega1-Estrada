@@ -4,6 +4,7 @@ from django.views import generic
 from posts.models import Post
 from .forms import ChangePasswordForm, ProfileEditForm, UserEditForm, RegisterForm
 from .models import Profile
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView
 from django.urls import reverse_lazy
@@ -11,6 +12,12 @@ from django.urls import reverse_lazy
 class LoginFormView(SuccessMessageMixin, LoginView):
     template_name = 'Users/login.html'
     success_message = "Has iniciado sesión correctamente."
+
+    def get_success_url(self):
+        p, flag = Profile.objects.get_or_create(user=self.request.user, defaults={'id':self.request.user.id,'biography':"Mi biografía.."},)
+        if flag:
+            p.save()
+        return super().get_success_url()
 class UserRegisterView(SuccessMessageMixin, generic.CreateView):
     form_class = RegisterForm
     template_name = 'Users/user_register.html'
@@ -25,7 +32,7 @@ class UserRegisterView(SuccessMessageMixin, generic.CreateView):
 class UserEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     form_class = UserEditForm
     template_name = 'Users/edit_user.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('homepage:index')
     success_message = "Sus datos fueron actualizados correctamente."
 
     def get_object(self):
@@ -34,7 +41,7 @@ class UserEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
 class PasswordEditView(SuccessMessageMixin, PasswordChangeView):
     form_class: ChangePasswordForm
     template_name='Users/change_password.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('homepage:index')
     success_message = "Has cambiado correctamente tu contraseña."
     
 class ProfileDetailView(generic.DetailView):
